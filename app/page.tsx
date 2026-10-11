@@ -1,4 +1,5 @@
-import { profile, links, impact, experience, projects, skillGroups, domains, credentials } from "@/lib/site-data";
+import ScrollReveal from "@/components/ScrollReveal";
+import { profile, links, impact, experience, projects, skillGroups, domains, credentials, events } from "@/lib/site-data";
 
 function ArrowUpRight() {
   return <span aria-hidden="true">↗</span>;
@@ -7,6 +8,7 @@ function ArrowUpRight() {
 export default function Home() {
   return (
     <main className="site-shell">
+      <ScrollReveal />
       <header className="topbar">
         <a className="wordmark" href="#home" aria-label="Go to homepage">
           <span className="wordmark-mark">{profile.initials}</span>
@@ -16,6 +18,7 @@ export default function Home() {
           <a href="#experience">Experience</a>
           <a href="#work">Work</a>
           <a href="#expertise">Expertise</a>
+          {events.length > 0 && <a href="#events">Events</a>}
           <a href="#contact">Contact</a>
         </nav>
         <a className="availability" href={links.resume} target="_blank" rel="noreferrer">
@@ -24,24 +27,24 @@ export default function Home() {
       </header>
 
       <section className="hero section" id="home">
-        <div className="eyebrow"><span className="eyebrow-line" /> ENGINEERING LEADER · SOLUTION ARCHITECT</div>
-        <h1>
+        <div className="eyebrow hero-in" style={{ "--d": "0ms" } as React.CSSProperties}><span className="eyebrow-line" /> ENGINEERING LEADER · SOLUTION ARCHITECT</div>
+        <h1 className="hero-in" style={{ "--d": "80ms" } as React.CSSProperties}>
           I architect platforms
           <br />
           <span className="muted-heading">that scale — and AI that’s safe to trust.</span>
         </h1>
-        <p className="hero-copy">
+        <p className="hero-copy hero-in" style={{ "--d": "180ms" } as React.CSSProperties}>
           I’m {profile.name} — a tech lead and solution architect with {profile.yearsExperience} years
           building cloud-native data and SaaS platforms across retail, payments, and insurance.
           Today I lead Generative and Agentic AI initiatives at Adidas.
         </p>
-        <div className="hero-actions">
+        <div className="hero-actions hero-in" style={{ "--d": "280ms" } as React.CSSProperties}>
           <a className="button button-primary" href="#experience">View my experience <ArrowUpRight /></a>
           <a className="button button-secondary" href={links.linkedin} target="_blank" rel="noreferrer">
             LinkedIn profile <ArrowUpRight />
           </a>
         </div>
-        <div className="hero-meta">
+        <div className="hero-meta hero-in" style={{ "--d": "380ms" } as React.CSSProperties}>
           <span><span className="status-dot" /> Tech Lead · Solution Architect at Adidas</span>
           <span>Based in {profile.location}</span>
           <span>IIT Hyderabad certified · AI & Emerging Tech</span>
@@ -57,8 +60,8 @@ export default function Home() {
       </section>
 
       <section className="impact-strip" aria-label="Career impact">
-        {impact.map((item) => (
-          <div className="impact-item" key={item.label}>
+        {impact.map((item, i) => (
+          <div className="impact-item reveal" key={item.label} style={{ "--d": `${i * 90}ms` } as React.CSSProperties}>
             <strong>{item.value}</strong>
             <span>{item.label}</span>
           </div>
@@ -66,7 +69,7 @@ export default function Home() {
       </section>
 
       <section className="section experience-section" id="experience">
-        <div className="section-heading">
+        <div className="section-heading reveal">
           <div>
             <div className="eyebrow"><span className="eyebrow-line" /> PROFESSIONAL EXPERIENCE</div>
             <h2>14 years of <span className="muted-heading">shipping to production.</span></h2>
@@ -75,7 +78,7 @@ export default function Home() {
         </div>
         <ol className="timeline">
           {experience.map((role) => (
-            <li className="timeline-item" key={role.company + role.period}>
+            <li className="timeline-item reveal" key={role.company + role.period}>
               <div className="timeline-meta">
                 <span className="timeline-period">{role.period}</span>
                 <span className="timeline-company">{role.company}</span>
@@ -94,7 +97,7 @@ export default function Home() {
       </section>
 
       <section className="section work-section" id="work">
-        <div className="section-heading">
+        <div className="section-heading reveal">
           <div>
             <div className="eyebrow"><span className="eyebrow-line" /> SELECTED WORK</div>
             <h2>Systems I’ve <span className="muted-heading">designed and built.</span></h2>
@@ -103,7 +106,7 @@ export default function Home() {
         </div>
         <div className="project-grid">
           {projects.map((project, index) => (
-            <article className="project-card" key={project.name}>
+            <article className="project-card reveal" key={project.name} style={{ "--d": `${(index % 2) * 100}ms` } as React.CSSProperties}>
               <div className={`project-visual visual-${(index % 4) + 1}`}>
                 <div className="visual-window">
                   <div className="window-bar"><i /><i /><i /><span>{project.visualLabel}</span></div>
@@ -141,7 +144,7 @@ export default function Home() {
       </section>
 
       <section className="section about-section" id="about">
-        <div className="about-copy">
+        <div className="about-copy reveal">
           <div className="eyebrow"><span className="eyebrow-line" /> HOW I WORK</div>
           <h2>Architect by trade.<br /><span className="muted-heading">Delivery-minded by habit.</span></h2>
           <p>{profile.summary}</p>
@@ -152,7 +155,7 @@ export default function Home() {
           </p>
           <a className="text-link" href={links.resume} target="_blank" rel="noreferrer">Read the full résumé <ArrowUpRight /></a>
         </div>
-        <aside className="principles-card">
+        <aside className="principles-card reveal" style={{ "--d": "120ms" } as React.CSSProperties}>
           <div className="principle"><span className="principle-icon">01</span><div><h3>Guardrails before autonomy</h3><p>LLM reasoning stays separate from enterprise execution, with validation and controlled tool access.</p></div></div>
           <div className="principle"><span className="principle-icon">02</span><div><h3>Build once, share widely</h3><p>Reusable frameworks and shared capabilities over one-off solutions.</p></div></div>
           <div className="principle"><span className="principle-icon">03</span><div><h3>Prove it in production</h3><p>Phased testing, reconciliation, and runbook-driven go-lives.</p></div></div>
@@ -161,38 +164,60 @@ export default function Home() {
       </section>
 
       <section className="section expertise-section" id="expertise">
-        <div className="section-heading">
+        <div className="section-heading reveal">
           <div>
             <div className="eyebrow"><span className="eyebrow-line" /> EXPERTISE</div>
             <h2>Tools I reach for, <span className="muted-heading">domains I know.</span></h2>
           </div>
         </div>
         <div className="skills-grid">
-          {skillGroups.map((group) => (
-            <div className="skill-card" key={group.name}>
+          {skillGroups.map((group, i) => (
+            <div className="skill-card reveal" key={group.name} style={{ "--d": `${(i % 2) * 100}ms` } as React.CSSProperties}>
               <h3>{group.name}</h3>
               <div className="tag-list">{group.items.map((item) => <span key={item}>{item}</span>)}</div>
             </div>
           ))}
         </div>
         <div className="domain-row">
-          {domains.map((d) => (
-            <div className="domain-card" key={d.name}>
+          {domains.map((d, i) => (
+            <div className="domain-card reveal" key={d.name} style={{ "--d": `${i * 100}ms` } as React.CSSProperties}>
               <span className="domain-kicker">DOMAIN</span>
               <h3>{d.name}</h3>
               <p>{d.detail}</p>
             </div>
           ))}
         </div>
-        <div className="credentials">
+        <div className="credentials reveal">
           <span className="domain-kicker">CERTIFICATIONS & EDUCATION</span>
           <ul>{credentials.map((c) => <li key={c}>{c}</li>)}</ul>
         </div>
       </section>
 
+      {events.length > 0 && (
+        <section className="section events-section" id="events">
+          <div className="section-heading reveal">
+            <div>
+              <div className="eyebrow"><span className="eyebrow-line" /> TALKS & EVENTS</div>
+              <h2>Sharing what I’ve <span className="muted-heading">learned in production.</span></h2>
+            </div>
+          </div>
+          <div className="events-grid">
+            {events.map((e) => (
+              <article className="event-card reveal" key={e.title + e.date}>
+                <div className="event-meta"><span className="event-type">{e.type}</span><span>{e.date}</span></div>
+                <h3>{e.title}</h3>
+                <p className="event-where">{e.event} · {e.location}</p>
+                {e.description && <p>{e.description}</p>}
+                {e.href && <a className="text-link" href={e.href} target="_blank" rel="noreferrer">View event <ArrowUpRight /></a>}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section className="section contact-section" id="contact">
         <div className="eyebrow"><span className="eyebrow-line" /> LET’S TALK</div>
-        <h2>Building something <span className="muted-heading">ambitious?</span></h2>
+        <h2 className="reveal">Building something <span className="muted-heading">ambitious?</span></h2>
         <p>Open to engineering leadership and architecture roles, Agentic AI initiatives, and conversations about building secure, scalable platforms.</p>
         <a className="button button-primary" href={`mailto:${links.email}`}>Get in touch <ArrowUpRight /></a>
         <div className="social-links">
