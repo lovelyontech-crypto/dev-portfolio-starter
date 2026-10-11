@@ -201,3 +201,19 @@ hr {
   font-size: 14px;
   color: var(--faint);
 }
+
+/* ---------- Solution architecture ---------- */
+#architecture { padding-top: 10px; }
+.arch-statement { font-size: 19px; line-height: 1.5; margin: 0 0 14px; max-width: 760px; }
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0 0 22px; }
+.chips li {
+  font-size: 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 4px 11px;
+  color: var(--soft);
+  background: #fafafa;
+}
+.card-num { display: block; font-size: 13px; color: var(--faint); margin-bottom: 2px; }
+.card .evidence { font-size: 14px; color: var(--soft); }
+.card .evidence .label { color: var(--muted); }

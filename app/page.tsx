@@ -1,4 +1,4 @@
-import { profile, links, experience, projects, skillGroups, domains, credentials, events } from "@/lib/site-data";
+import { profile, links, architecture, experience, projects, skillGroups, domains, credentials, events } from "@/lib/site-data";
 
 function initials(company: string) {
   return company.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase();
@@ -29,6 +29,26 @@ export default function Home() {
           <div id="demail">{links.email}</div>
         </div>
       </header>
+
+      <hr />
+
+      {/* ---------- Solution architecture ---------- */}
+      <section id="architecture" aria-label="Solution architecture">
+        <p className="arch-statement">{architecture.statement}</p>
+        <ul className="chips" aria-label="Core capabilities">
+          {architecture.capabilities.map((c) => <li key={c}>{c}</li>)}
+        </ul>
+        <div className="row cards">
+          {architecture.areas.map((a, i) => (
+            <div className="card" key={a.name}>
+              <span className="card-num">{String(i + 1).padStart(2, "0")}</span>
+              <b>{a.name}</b>
+              <p>{a.summary}</p>
+              <p className="evidence"><span className="label">In practice:</span> {a.evidence}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <hr />
 
