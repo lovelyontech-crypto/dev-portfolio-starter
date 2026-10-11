@@ -1,6 +1,8 @@
 # Developer Portfolio Starter
 
-A dark, responsive personal portfolio starter built with Next.js App Router, TypeScript, and Tailwind CSS v4. The visual styling uses custom CSS for a distinctive dark look.
+A minimal, responsive personal portfolio built with Next.js App Router and TypeScript. The styling is plain custom CSS in a clean academic style (white background, sans-serif type, gray timeline, default blue links).
+
+To add your photo, put a square image in `public/` (e.g. `public/me.jpg`) and set `photo: "/me.jpg"` in `lib/site-data.ts`. Each role can also take an optional `logo` path.
 
 ## Requirements
 
