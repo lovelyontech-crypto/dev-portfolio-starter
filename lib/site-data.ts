@@ -1,5 +1,9 @@
-export const profile = {
+export const profile: {
+  name: string; initials: string; title: string; tagline: string; location: string;
+  yearsExperience: string; summary: string; photo?: string;
+} = {
   name: "Lovely Ram",
+  // Add a square photo to /public (e.g. /public/me.jpg) and set: photo: "/me.jpg",
   initials: "LR",
   title: "Engineering Leader · Solution Architect",
   tagline: "Cloud-Native Data & SaaS Platforms · Agentic AI Systems",
@@ -30,6 +34,7 @@ export type Role = {
   focus: string;
   highlights: string[];
   stack: string[];
+  logo?: string; // optional, e.g. "/logos/adidas.png" in /public
 };
 
 export const experience: Role[] = [
