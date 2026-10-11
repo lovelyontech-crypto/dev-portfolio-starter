@@ -183,3 +183,16 @@ export const credentials = [
   "SAFe (Scaled Agile Framework) Certified",
   "Master of Computer Applications (MCA) — BPUT, Odisha, 2011",
 ];
+
+export type TalkEvent = {
+  title: string;
+  event: string;
+  date: string;
+  location: string;
+  type: "Talk" | "Panel" | "Workshop" | "Attended";
+  description?: string;
+  href?: string;
+};
+
+// Add talks, panels, workshops, or conferences here. The section is hidden while this list is empty.
+export const events: TalkEvent[] = [];
