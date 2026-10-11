@@ -222,7 +222,7 @@ export const skillGroups = [
   },
   {
     name: "Generative & Agentic AI",
-    items: ["Agentic AI", "MCP / FastMCP", "LangGraph", "RAG", "Vector Databases", "Guardrails", "AWS Bedrock", "Amazon SageMaker", "Databricks Genie", "Ollama"],
+    items: ["AI Engineering", "Agentic AI", "MCP / FastMCP", "LangChain", "LangGraph", "RAG", "LLM Evals", "Vector Databases", "Guardrails", "AWS Bedrock", "Amazon SageMaker", "Databricks Genie", "Ollama"],
   },
   {
     name: "Cloud & DevOps",
