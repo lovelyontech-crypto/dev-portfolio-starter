@@ -1,4 +1,5 @@
 import ScrollReveal from "@/components/ScrollReveal";
+import Slider from "@/components/Slider";
 import { profile, links, impact, experience, projects, skillGroups, domains, credentials, events } from "@/lib/site-data";
 
 function ArrowUpRight() {
@@ -76,9 +77,10 @@ export default function Home() {
           </div>
           <p>From enterprise insurance to multi-tenant payments to agentic AI — owning architecture, quality, and delivery end to end.</p>
         </div>
-        <ol className="timeline">
+        <div className="reveal">
+        <Slider label="Professional experience" interval={12000}>
           {experience.map((role) => (
-            <li className="timeline-item reveal" key={role.company + role.period}>
+            <article className="timeline-item" key={role.company + role.period}>
               <div className="timeline-meta">
                 <span className="timeline-period">{role.period}</span>
                 <span className="timeline-company">{role.company}</span>
@@ -91,9 +93,10 @@ export default function Home() {
                 </ul>
                 <div className="tag-list">{role.stack.map((item) => <span key={item}>{item}</span>)}</div>
               </div>
-            </li>
+            </article>
           ))}
-        </ol>
+        </Slider>
+        </div>
       </section>
 
       <section className="section work-section" id="work">
@@ -104,9 +107,10 @@ export default function Home() {
           </div>
           <p>Enterprise AI platforms from my role at Adidas, alongside independent products and rapid prototypes.</p>
         </div>
-        <div className="project-grid">
+        <div className="reveal">
+        <Slider label="Selected work" interval={8000} perViewDesktop={2}>
           {projects.map((project, index) => (
-            <article className="project-card reveal" key={project.name} style={{ "--d": `${(index % 2) * 100}ms` } as React.CSSProperties}>
+            <article className="project-card" key={project.name}>
               <div className={`project-visual visual-${(index % 4) + 1}`}>
                 <div className="visual-window">
                   <div className="window-bar"><i /><i /><i /><span>{project.visualLabel}</span></div>
@@ -140,6 +144,7 @@ export default function Home() {
               </div>
             </article>
           ))}
+        </Slider>
         </div>
       </section>
 
