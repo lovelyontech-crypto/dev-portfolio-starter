@@ -9,9 +9,11 @@ type SliderProps = {
   interval?: number;
   /** Slides visible at once on wide screens (>= 900px). */
   perViewDesktop?: number;
+  /** "start" lets each slide keep its own height; "stretch" makes visible cards equal height. */
+  align?: "start" | "stretch";
 };
 
-export default function Slider({ children, label, interval = 8000, perViewDesktop = 1 }: SliderProps) {
+export default function Slider({ children, label, interval = 8000, perViewDesktop = 1, align = "stretch" }: SliderProps) {
   const slides = Children.toArray(children);
   const [perView, setPerView] = useState(1);
   const [index, setIndex] = useState(0);
@@ -21,6 +23,8 @@ export default function Slider({ children, label, interval = 8000, perViewDeskto
   const [tick, setTick] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
   const touchX = useRef<number | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number | undefined>(undefined);
 
   const maxIndex = Math.max(0, slides.length - perView);
   const pages = maxIndex + 1;
@@ -59,6 +63,21 @@ export default function Slider({ children, label, interval = 8000, perViewDeskto
     return () => document.removeEventListener("visibilitychange", onVis);
   }, []);
 
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const measure = () => {
+      const els = Array.from(track.children) as HTMLElement[];
+      const visible = els.slice(index, index + perView);
+      const inner = visible.map((el) => (el.firstElementChild as HTMLElement | null)?.offsetHeight ?? 0);
+      if (inner.length) setHeight(Math.max(...inner) + 8);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    Array.from(track.children).forEach((el) => el.firstElementChild && ro.observe(el.firstElementChild));
+    return () => ro.disconnect();
+  }, [index, perView, slides.length]);
+
   const go = useCallback(
     (next: number) => {
       setIndex(((next % pages) + pages) % pages);
@@ -78,7 +97,7 @@ export default function Slider({ children, label, interval = 8000, perViewDeskto
   return (
     <div
       ref={rootRef}
-      className={`slider${autoplay ? " is-playing" : ""}`}
+      className={`slider slider-align-${align}${autoplay ? " is-playing" : ""}`}
       role="region"
       aria-roledescription="carousel"
       aria-label={label}
@@ -102,8 +121,8 @@ export default function Slider({ children, label, interval = 8000, perViewDeskto
         touchX.current = null;
       }}
     >
-      <div className="slider-viewport">
-        <div className="slider-track" style={{ transform: `translateX(-${(index * 100) / perView}%)` }}>
+      <div className="slider-viewport" style={{ height }}>
+        <div className="slider-track" ref={trackRef} style={{ transform: `translateX(-${(index * 100) / perView}%)` }}>
           {slides.map((slide, i) => {
             const visible = i >= index && i < index + perView;
             return (
