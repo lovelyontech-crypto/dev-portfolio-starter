@@ -36,12 +36,17 @@ export default function Home() {
       <section id="architecture" aria-label="Solution architecture">
         <p className="arch-statement">{architecture.statement}</p>
         <ul className="chips" aria-label="Core capabilities">
-          {architecture.capabilities.map((c) => <li key={c}>{c}</li>)}
+          {architecture.capabilities.map((c) => (
+            <li key={c}><SkillIcon name={c} />{c}</li>
+          ))}
         </ul>
         <div className="row cards">
           {architecture.areas.map((a, i) => (
-            <div className="card" key={a.name}>
-              <span className="card-num">{String(i + 1).padStart(2, "0")}</span>
+            <div className="card arch-card" key={a.name} style={{ "--accent": ACCENTS[i % ACCENTS.length] } as React.CSSProperties}>
+              <div className="arch-head">
+                <span className="arch-icon"><SkillIcon name={a.name} /></span>
+                <span className="card-num">{String(i + 1).padStart(2, "0")}</span>
+              </div>
               <b>{a.name}</b>
               <p>{a.summary}</p>
               <p className="evidence"><span className="label">In practice:</span> {a.evidence}</p>
@@ -140,6 +145,46 @@ export default function Home() {
         Get in touch: <a href={`mailto:${links.email}`}>{links.email}</a> · <a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · <a href={links.github} target="_blank" rel="noreferrer">GitHub</a>
       </footer>
     </div>
+  );
+}
+
+const ACCENTS = ["#2563eb", "#0891b2", "#7c3aed", "#059669", "#d97706"];
+
+const ICON_PATHS: Record<string, React.ReactNode> = {
+  layers: <><path d="M12 3 2 8l10 5 10-5-10-5Z" /><path d="m2 13 10 5 10-5" /><path d="m2 17.5 10 5 10-5" opacity=".6" /></>,
+  nodes: <><rect x="9" y="2.5" width="6" height="5" rx="1" /><rect x="2.5" y="16.5" width="6" height="5" rx="1" /><rect x="15.5" y="16.5" width="6" height="5" rx="1" /><path d="M12 7.5v4.5M5.5 16.5V12h13v4.5" /></>,
+  cloud: <path d="M7 18.5h10.5a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.6 9.1 4.75 4.75 0 0 0 7 18.5Z" />,
+  shield: <><path d="M12 2.5 4 5.5v6c0 4.6 3.4 8.6 8 10 4.6-1.4 8-5.4 8-10v-6l-8-3Z" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>,
+  database: <><ellipse cx="12" cy="5.5" rx="7.5" ry="3" /><path d="M4.5 5.5v13c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-13" /><path d="M4.5 12c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3" /></>,
+  integration: <><path d="M4 8h13l-3.5-3.5" /><path d="M20 16H7l3.5 3.5" /></>,
+  mesh: <><circle cx="12" cy="4" r="2" /><circle cx="4.5" cy="9.5" r="2" /><circle cx="19.5" cy="9.5" r="2" /><circle cx="7.5" cy="19" r="2" /><circle cx="16.5" cy="19" r="2" /><path d="M10.3 5.2 6.2 8.3M13.7 5.2l4.1 3.1M5.2 11.4l1.6 5.7M18.8 11.4l-1.6 5.7M9.5 19h5M6.5 9.5h11M12 6v11" opacity=".75" /></>,
+  recovery: <><path d="M3.5 12a8.5 8.5 0 0 1 14.6-5.9L20.5 8.5" /><path d="M20.5 3.5v5h-5" /><path d="M20.5 12a8.5 8.5 0 0 1-14.6 5.9L3.5 15.5" /><path d="M3.5 20.5v-5h5" /></>,
+  document: <><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8l-5.5-5.5Z" /><path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h5" /></>,
+};
+
+const SKILL_ICON: Record<string, string> = {
+  "Solution Architecture": "layers",
+  "System Design": "nodes",
+  "Cloud Architecture": "cloud",
+  "Security & IAM": "shield",
+  "Data Architecture": "database",
+  "Integration Patterns": "integration",
+  "Service Mesh": "mesh",
+  "Disaster Recovery & Failover": "recovery",
+  "Architecture Decision Records": "document",
+  "Solution & system design": "nodes",
+  "Cloud & infrastructure architecture": "cloud",
+  "Integration & data architecture": "database",
+  "Security & non-functional requirements": "shield",
+  "Architecture governance & communication": "document",
+};
+
+function SkillIcon({ name }: { name: string }) {
+  const paths = ICON_PATHS[SKILL_ICON[name] ?? "layers"];
+  return (
+    <svg className="skill-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      {paths}
+    </svg>
   );
 }
 

@@ -225,3 +225,20 @@ hr {
 .card-num { display: block; font-size: 13px; color: var(--faint); margin-bottom: 2px; }
 .card .evidence { font-size: 14px; color: var(--soft); }
 .card .evidence .label { color: var(--muted); }
+
+/* ---------- Skill icons ---------- */
+.chips li { display: inline-flex; align-items: center; gap: 6px; }
+.chips .skill-icon { width: 18px; height: 18px; color: #2563eb; flex: none; }
+.arch-card { border-top: 3px solid var(--accent); }
+.arch-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.arch-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, white);
+}
+.arch-icon .skill-icon { width: 28px; height: 28px; }
