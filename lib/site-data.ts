@@ -92,6 +92,7 @@ export const experience: Role[] = [
   {
     title: "Senior Software Engineer / Tech Lead — Solution Architect (AI & Agentic AI)",
     company: "Adidas India",
+    logo: "/logos/adidas.svg",
     period: "2023 — Present",
     focus: "Retail merchandising (M3 / Market & Range Management)",
     highlights: [
@@ -107,6 +108,7 @@ export const experience: Role[] = [
   {
     title: "Senior Software Engineer / Tech Lead — Solution Architect",
     company: "Capita India",
+    logo: "/logos/capita.svg",
     period: "2021 — 2023",
     focus: "Payments (Pay360 multi-tenant SaaS)",
     highlights: [
@@ -119,6 +121,7 @@ export const experience: Role[] = [
   {
     title: "Product Developer",
     company: "DXC Technology",
+    logo: "/logos/dxc.png",
     period: "2014 — 2021",
     focus: "Insurance (life, group & general)",
     highlights: [
@@ -131,6 +134,7 @@ export const experience: Role[] = [
   {
     title: "Software Engineer",
     company: "Diaspark · Datamatics (Honeywell Technology)",
+    logo: "/logos/diaspark.png",
     period: "2012 — 2014",
     focus: "Enterprise insurance & business systems",
     highlights: [
