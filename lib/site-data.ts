@@ -30,6 +30,7 @@ export const architecture = {
     "Security & IAM",
     "Data Architecture",
     "Integration Patterns",
+    "Service Mesh",
     "Architecture Decision Records",
   ],
   areas: [
@@ -43,7 +44,7 @@ export const architecture = {
     {
       name: "Cloud & infrastructure architecture",
       summary:
-        "Networking, compute, storage, identity, observability, resilience, and deployment on AWS and Azure.",
+        "Networking, compute, storage, identity, service mesh, observability, resilience, and deployment on AWS and Azure.",
       evidence:
         "Cloud-native delivery on AWS and Azure with Docker, Kubernetes, GitHub Actions CI/CD, and Prometheus/Grafana observability.",
     },
@@ -220,11 +221,11 @@ export const skillGroups = [
   },
   {
     name: "Generative & Agentic AI",
-    items: ["Agentic AI", "MCP / FastMCP", "LangGraph", "RAG", "Vector Databases", "Guardrails", "AWS Bedrock", "Databricks Genie", "Ollama"],
+    items: ["Agentic AI", "MCP / FastMCP", "LangGraph", "RAG", "Vector Databases", "Guardrails", "AWS Bedrock", "Amazon SageMaker", "Databricks Genie", "Ollama"],
   },
   {
     name: "Cloud & DevOps",
-    items: ["AWS", "Azure", "Docker", "Kubernetes", "GitHub Actions", "CI/CD & DevSecOps", "Prometheus", "Grafana"],
+    items: ["AWS", "Azure", "Docker", "Kubernetes", "Service Mesh", "GitHub Actions", "CI/CD & DevSecOps", "Prometheus", "Grafana"],
   },
   {
     name: "Data & Platforms",
