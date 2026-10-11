@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Your Name — Software Engineer & Open Source",
+  title: "Lovely Ram — Engineering Leader & Solution Architect",
   description:
-    "Software engineer building useful tools, sharing what I learn, and contributing to open source.",
+    "Engineering leader and solution architect with 14+ years building cloud-native data and SaaS platforms and enterprise Agentic AI systems.",
   metadataBase: new URL("https://example.com"),
   openGraph: {
-    title: "Your Name — Software Engineer & Open Source",
-    description: "Projects, writing, and open-source work by Your Name.",
+    title: "Lovely Ram — Engineering Leader & Solution Architect",
+    description: "Experience, architecture, and AI work by Lovely Ram — Tech Lead & Solution Architect.",
     url: "https://example.com",
-    siteName: "Your Name",
+    siteName: "Lovely Ram",
     type: "website",
   },
 };

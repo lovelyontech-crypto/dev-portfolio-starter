@@ -1,4 +1,4 @@
-import { projects, links } from "@/lib/site-data";
+import { profile, links, impact, experience, projects, skillGroups, domains, credentials } from "@/lib/site-data";
 
 function ArrowUpRight() {
   return <span aria-hidden="true">↗</span>;
@@ -9,63 +9,102 @@ export default function Home() {
     <main className="site-shell">
       <header className="topbar">
         <a className="wordmark" href="#home" aria-label="Go to homepage">
-          <span className="wordmark-mark">YN</span>
-          <span>Your Name</span>
+          <span className="wordmark-mark">{profile.initials}</span>
+          <span>{profile.name}</span>
         </a>
         <nav aria-label="Main navigation" className="nav-links">
+          <a href="#experience">Experience</a>
           <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <a href="#opensource">Open source</a>
+          <a href="#expertise">Expertise</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a className="availability" href="#contact">
-          <span className="status-dot" /> Open to collaboration
+        <a className="availability" href={links.resume} target="_blank" rel="noreferrer">
+          <span className="status-dot" /> Download résumé
         </a>
       </header>
 
       <section className="hero section" id="home">
-        <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE ENGINEER · OPEN SOURCE</div>
+        <div className="eyebrow"><span className="eyebrow-line" /> ENGINEERING LEADER · SOLUTION ARCHITECT</div>
         <h1>
-          I build digital things
+          I architect platforms
           <br />
-          <span className="muted-heading">that make a difference.</span>
+          <span className="muted-heading">that scale — and AI that’s safe to trust.</span>
         </h1>
         <p className="hero-copy">
-          I’m Your Name — a software engineer who enjoys solving hard problems,
-          building thoughtful products, and making useful tools available to everyone.
+          I’m {profile.name} — a tech lead and solution architect with {profile.yearsExperience} years
+          building cloud-native data and SaaS platforms across retail, payments, and insurance.
+          Today I lead Generative and Agentic AI initiatives at Adidas.
         </p>
         <div className="hero-actions">
-          <a className="button button-primary" href="#work">Explore my work <ArrowUpRight /></a>
-          <a className="button button-secondary" href={links.github} target="_blank" rel="noreferrer">
-            <GitHubMark /> GitHub profile
+          <a className="button button-primary" href="#experience">View my experience <ArrowUpRight /></a>
+          <a className="button button-secondary" href={links.linkedin} target="_blank" rel="noreferrer">
+            LinkedIn profile <ArrowUpRight />
           </a>
         </div>
         <div className="hero-meta">
-          <span><span className="status-dot" /> Currently building in public</span>
-          <span>Based in Your City</span>
+          <span><span className="status-dot" /> Tech Lead · Solution Architect at Adidas</span>
+          <span>Based in {profile.location}</span>
+          <span>IIT Hyderabad certified · AI & Emerging Tech</span>
         </div>
         <div className="hero-art" aria-hidden="true">
           <div className="art-grid" />
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
-          <div className="art-core"><span>build</span><span className="art-core-symbol">{"{ }"}</span><span>· share · repeat</span></div>
-          <span className="art-label art-label-top">IDEAS → IMPACT</span>
-          <span className="art-label art-label-bottom">EST. ALWAYS LEARNING</span>
+          <div className="art-core"><span>design</span><span className="art-core-symbol">{"{ }"}</span><span>· scale · secure</span></div>
+          <span className="art-label art-label-top">ARCHITECTURE → IMPACT</span>
+          <span className="art-label art-label-bottom">EST. 2012</span>
         </div>
+      </section>
+
+      <section className="impact-strip" aria-label="Career impact">
+        {impact.map((item) => (
+          <div className="impact-item" key={item.label}>
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+          </div>
+        ))}
+      </section>
+
+      <section className="section experience-section" id="experience">
+        <div className="section-heading">
+          <div>
+            <div className="eyebrow"><span className="eyebrow-line" /> PROFESSIONAL EXPERIENCE</div>
+            <h2>14 years of <span className="muted-heading">shipping to production.</span></h2>
+          </div>
+          <p>From enterprise insurance to multi-tenant payments to agentic AI — owning architecture, quality, and delivery end to end.</p>
+        </div>
+        <ol className="timeline">
+          {experience.map((role) => (
+            <li className="timeline-item" key={role.company + role.period}>
+              <div className="timeline-meta">
+                <span className="timeline-period">{role.period}</span>
+                <span className="timeline-company">{role.company}</span>
+                <span className="timeline-focus">{role.focus}</span>
+              </div>
+              <div className="timeline-body">
+                <h3>{role.title}</h3>
+                <ul>
+                  {role.highlights.map((h) => <li key={h}>{h}</li>)}
+                </ul>
+                <div className="tag-list">{role.stack.map((item) => <span key={item}>{item}</span>)}</div>
+              </div>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="section work-section" id="work">
         <div className="section-heading">
           <div>
             <div className="eyebrow"><span className="eyebrow-line" /> SELECTED WORK</div>
-            <h2>Things I’ve <span className="muted-heading">put into the world.</span></h2>
+            <h2>Systems I’ve <span className="muted-heading">designed and built.</span></h2>
           </div>
-          <p>Small set of projects I’m proud of. Replace these examples with real work and measurable outcomes.</p>
+          <p>Enterprise AI platforms from my role at Adidas, alongside independent products and rapid prototypes.</p>
         </div>
         <div className="project-grid">
           {projects.map((project, index) => (
             <article className="project-card" key={project.name}>
-              <div className={`project-visual visual-${index + 1}`}>
+              <div className={`project-visual visual-${(index % 4) + 1}`}>
                 <div className="visual-window">
                   <div className="window-bar"><i /><i /><i /><span>{project.visualLabel}</span></div>
                   <div className="visual-content">
@@ -78,19 +117,23 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <span className="project-number">0{index + 1}</span>
+                <span className="project-number">{String(index + 1).padStart(2, "0")}</span>
               </div>
               <div className="project-body">
                 <div className="project-title-row">
                   <h3>{project.name}</h3>
-                  <a className="icon-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.name}`}><ArrowUpRight /></a>
+                  {project.href && (
+                    <a className="icon-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.name}`}><ArrowUpRight /></a>
+                  )}
                 </div>
                 <p>{project.description}</p>
                 <div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
-                <div className="project-links">
-                  <a href={project.href} target="_blank" rel="noreferrer">View project <ArrowUpRight /></a>
-                  {project.source && <a href={project.source} target="_blank" rel="noreferrer">Source code <ArrowUpRight /></a>}
-                </div>
+                {(project.href || project.source) && (
+                  <div className="project-links">
+                    {project.href && <a href={project.href} target="_blank" rel="noreferrer">View project <ArrowUpRight /></a>}
+                    {project.source && <a href={project.source} target="_blank" rel="noreferrer">Source code <ArrowUpRight /></a>}
+                  </div>
+                )}
               </div>
             </article>
           ))}
@@ -99,53 +142,70 @@ export default function Home() {
 
       <section className="section about-section" id="about">
         <div className="about-copy">
-          <div className="eyebrow"><span className="eyebrow-line" /> A LITTLE ABOUT ME</div>
-          <h2>Curious by default.<br /><span className="muted-heading">Practical by design.</span></h2>
+          <div className="eyebrow"><span className="eyebrow-line" /> HOW I WORK</div>
+          <h2>Architect by trade.<br /><span className="muted-heading">Delivery-minded by habit.</span></h2>
+          <p>{profile.summary}</p>
           <p>
-            I care about clear code, useful abstractions, accessible experiences,
-            and software that solves a real problem. I like taking ideas from a rough
-            sketch to a dependable product — and sharing the lessons along the way.
+            I design systems to be secure, auditable, and observable — with deterministic logic beneath
+            AI layers — and I translate architecture into business terms for product, business, and
+            compliance stakeholders.
           </p>
-          <p>
-            Outside of shipping features, I explore new tools, read source code,
-            write notes, and contribute where I can make a meaningful difference.
-          </p>
-          <a className="text-link" href={links.github} target="_blank" rel="noreferrer">Follow what I’m building <ArrowUpRight /></a>
+          <a className="text-link" href={links.resume} target="_blank" rel="noreferrer">Read the full résumé <ArrowUpRight /></a>
         </div>
         <aside className="principles-card">
-          <div className="principle"><span className="principle-icon">01</span><div><h3>Make it useful</h3><p>Start with the problem, not the technology.</p></div></div>
-          <div className="principle"><span className="principle-icon">02</span><div><h3>Keep it understandable</h3><p>Readable code is a feature, not a luxury.</p></div></div>
-          <div className="principle"><span className="principle-icon">03</span><div><h3>Share the learning</h3><p>Good tools and knowledge should travel.</p></div></div>
+          <div className="principle"><span className="principle-icon">01</span><div><h3>Guardrails before autonomy</h3><p>LLM reasoning stays separate from enterprise execution, with validation and controlled tool access.</p></div></div>
+          <div className="principle"><span className="principle-icon">02</span><div><h3>Build once, share widely</h3><p>Reusable frameworks and shared capabilities over one-off solutions.</p></div></div>
+          <div className="principle"><span className="principle-icon">03</span><div><h3>Prove it in production</h3><p>Phased testing, reconciliation, and runbook-driven go-lives.</p></div></div>
+          <div className="principle"><span className="principle-icon">04</span><div><h3>Grow the team</h3><p>Mentoring engineers on architecture, code quality, and secure development.</p></div></div>
         </aside>
       </section>
 
-      <section className="section open-source-section" id="opensource">
-        <div className="opensource-panel">
-          <div className="opensource-symbol"><GitHubMark /></div>
-          <div className="opensource-copy">
-            <div className="eyebrow"><span className="eyebrow-line" /> OPEN SOURCE</div>
-            <h2>Better software is a <span className="muted-heading">team sport.</span></h2>
-            <p>I’m interested in contributing to thoughtful projects, improving developer experience, and learning in the open. Explore my repositories or reach out if you’re working on something useful.</p>
+      <section className="section expertise-section" id="expertise">
+        <div className="section-heading">
+          <div>
+            <div className="eyebrow"><span className="eyebrow-line" /> EXPERTISE</div>
+            <h2>Tools I reach for, <span className="muted-heading">domains I know.</span></h2>
           </div>
-          <a className="button button-primary" href={links.github} target="_blank" rel="noreferrer">Explore repositories <ArrowUpRight /></a>
+        </div>
+        <div className="skills-grid">
+          {skillGroups.map((group) => (
+            <div className="skill-card" key={group.name}>
+              <h3>{group.name}</h3>
+              <div className="tag-list">{group.items.map((item) => <span key={item}>{item}</span>)}</div>
+            </div>
+          ))}
+        </div>
+        <div className="domain-row">
+          {domains.map((d) => (
+            <div className="domain-card" key={d.name}>
+              <span className="domain-kicker">DOMAIN</span>
+              <h3>{d.name}</h3>
+              <p>{d.detail}</p>
+            </div>
+          ))}
+        </div>
+        <div className="credentials">
+          <span className="domain-kicker">CERTIFICATIONS & EDUCATION</span>
+          <ul>{credentials.map((c) => <li key={c}>{c}</li>)}</ul>
         </div>
       </section>
 
       <section className="section contact-section" id="contact">
-        <div className="eyebrow"><span className="eyebrow-line" /> HAVE SOMETHING IN MIND?</div>
-        <h2>Let’s make <span className="muted-heading">something useful.</span></h2>
-        <p>Open to open-source collaboration, interesting technical conversations, and building things that help people.</p>
-        <a className="button button-primary" href={`mailto:${links.email}`}>Say hello <ArrowUpRight /></a>
+        <div className="eyebrow"><span className="eyebrow-line" /> LET’S TALK</div>
+        <h2>Building something <span className="muted-heading">ambitious?</span></h2>
+        <p>Open to engineering leadership and architecture roles, Agentic AI initiatives, and conversations about building secure, scalable platforms.</p>
+        <a className="button button-primary" href={`mailto:${links.email}`}>Get in touch <ArrowUpRight /></a>
         <div className="social-links">
-          <a href={links.github} target="_blank" rel="noreferrer"><GitHubMark /> GitHub <ArrowUpRight /></a>
           <a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
-          <a href={links.email.startsWith("you@") ? `mailto:${links.email}` : `mailto:${links.email}`}>Email <ArrowUpRight /></a>
+          <a href={links.github} target="_blank" rel="noreferrer"><GitHubMark /> GitHub <ArrowUpRight /></a>
+          <a href={`mailto:${links.email}`}>Email <ArrowUpRight /></a>
+          <a href={links.resume} target="_blank" rel="noreferrer">Résumé <ArrowUpRight /></a>
         </div>
       </section>
 
       <footer className="footer">
-        <a className="wordmark" href="#home"><span className="wordmark-mark">YN</span><span>Your Name</span></a>
-        <span>Designed and built with care.</span>
+        <a className="wordmark" href="#home"><span className="wordmark-mark">{profile.initials}</span><span>{profile.name}</span></a>
+        <span>{profile.tagline}</span>
         <a href="#home">Back to top ↑</a>
       </footer>
     </main>
