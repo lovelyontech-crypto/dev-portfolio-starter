@@ -31,6 +31,7 @@ export const architecture = {
     "Data Architecture",
     "Integration Patterns",
     "Service Mesh",
+    "Disaster Recovery & Failover",
     "Architecture Decision Records",
   ],
   areas: [
@@ -44,7 +45,7 @@ export const architecture = {
     {
       name: "Cloud & infrastructure architecture",
       summary:
-        "Networking, compute, storage, identity, service mesh, observability, resilience, and deployment on AWS and Azure.",
+        "Networking, compute, storage, identity, service mesh, observability, resilience, disaster recovery and failover, and deployment on AWS and Azure.",
       evidence:
         "Cloud-native delivery on AWS and Azure with Docker, Kubernetes, GitHub Actions CI/CD, and Prometheus/Grafana observability.",
     },
@@ -225,7 +226,7 @@ export const skillGroups = [
   },
   {
     name: "Cloud & DevOps",
-    items: ["AWS", "Azure", "Docker", "Kubernetes", "Service Mesh", "GitHub Actions", "CI/CD & DevSecOps", "Prometheus", "Grafana"],
+    items: ["AWS", "Azure", "Docker", "Kubernetes", "Service Mesh", "Disaster Recovery & Failover", "GitHub Actions", "CI/CD & DevSecOps", "Prometheus", "Grafana"],
   },
   {
     name: "Data & Platforms",
