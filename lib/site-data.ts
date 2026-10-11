@@ -5,8 +5,8 @@ export const profile: {
   name: "Lovely Ram",
   // Add a square photo to /public (e.g. /public/me.jpg) and set: photo: "/me.jpg",
   initials: "LR",
-  title: "Engineering Leader · Solution Architect",
-  tagline: "Cloud-Native Data & SaaS Platforms · Agentic AI Systems",
+  title: "Solution Architect",
+  tagline: "Cloud, System Design & AI-Assisted Engineering",
   location: "India",
   yearsExperience: "14+",
   summary:
@@ -18,6 +18,57 @@ export const links = {
   linkedin: "https://www.linkedin.com/in/lovely-ram-62730b36",
   email: "lovelyontech@gmail.com",
   resume: "/resume.pdf",
+};
+
+export const architecture = {
+  statement:
+    "I design end-to-end software solutions that align business requirements with application architecture, APIs, data, security, infrastructure, and operational needs.",
+  capabilities: [
+    "Solution Architecture",
+    "System Design",
+    "Cloud Architecture",
+    "Security & IAM",
+    "Data Architecture",
+    "Integration Patterns",
+    "Architecture Decision Records",
+  ],
+  areas: [
+    {
+      name: "Solution & system design",
+      summary:
+        "Component boundaries, service responsibilities, APIs, sync and async communication, caching, failure recovery, and scalability.",
+      evidence:
+        "Central Agentic AI Orchestrator routing validated requests to domain-bounded MCP servers; multi-tenant Pay360 microservices; ~40–50% latency reduction through JVM and concurrency tuning.",
+    },
+    {
+      name: "Cloud & infrastructure architecture",
+      summary:
+        "Networking, compute, storage, identity, observability, resilience, and deployment on AWS and Azure.",
+      evidence:
+        "Cloud-native delivery on AWS and Azure with Docker, Kubernetes, GitHub Actions CI/CD, and Prometheus/Grafana observability.",
+    },
+    {
+      name: "Integration & data architecture",
+      summary:
+        "REST APIs, messaging, event-driven design, databases, transactions, consistency, data ownership, and third-party integration.",
+      evidence:
+        "Kafka-based integration for payments and support automation; retired a 24-year-old legacy system with phased migration and data reconciliation; Databricks Lakehouse, PostgreSQL, Oracle, MongoDB.",
+    },
+    {
+      name: "Security & non-functional requirements",
+      summary:
+        "Turning performance, availability, privacy, security, recovery, maintainability, and cost requirements into concrete design decisions.",
+      evidence:
+        "JWT/OAuth2 payment APIs with tenant-scoped permissions; vulnerability remediation across 90+ microservices; guardrails, timeouts, and fallbacks for AI agents; local Ollama inference to cut cost and dependency risk.",
+    },
+    {
+      name: "Architecture governance & communication",
+      summary:
+        "ADRs, comparing alternatives, documenting trade-offs, design reviews, risk identification, and communicating with technical and business stakeholders.",
+      evidence:
+        "Introduced architecture and engineering standards that improved delivery efficiency by ~20% and cut defects and rework by ~40–50%; 5 years leading and mentoring engineering teams.",
+    },
+  ],
 };
 
 export const impact = [
