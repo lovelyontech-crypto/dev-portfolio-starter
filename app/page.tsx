@@ -78,7 +78,7 @@ export default function Home() {
           <p>From enterprise insurance to multi-tenant payments to agentic AI — owning architecture, quality, and delivery end to end.</p>
         </div>
         <div className="reveal">
-        <Slider label="Professional experience" interval={12000}>
+        <Slider label="Professional experience" interval={12000} align="start">
           {experience.map((role) => (
             <article className="timeline-item" key={role.company + role.period}>
               <div className="timeline-meta">
